@@ -4,15 +4,6 @@ import numpy as np
 from io import BytesIO
 import math
 
-#이미지 저장
-def image_saver(img,img_name):
-    #testserver에서 실행 시
-    result_path = 'result/' + img_name + '.jpg'
-    
-    #notebook 파일에서 실행 시
-    #result_path = '../result/' + img_name + '.jpg'
-    img.save(result_path)
-    
 def image_formatter(img_path,size=224,vertical_align='middle'):
     img = Image.open(img_path)
     img.thumbnail((size,size), Image.ANTIALIAS)
@@ -21,7 +12,7 @@ def image_formatter(img_path,size=224,vertical_align='middle'):
         base64_img = base64.b64encode(buffer.getvalue()).decode()
     return f'<img style="vertical-align:{vertical_align}" src="data:image/jpeg;base64,{base64_img}">'
 
-    
+
 def html_embed_image(img,size=100):
     img =  img.copy()
     img.thumbnail((size,size), Image.ANTIALIAS)
